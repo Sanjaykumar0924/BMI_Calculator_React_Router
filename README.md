@@ -1,5 +1,5 @@
 # Ex06 BMI Calculator
-## Date: 
+## Date: 15.3.26
 
 ## AIM
 To develop a responsive and interactive Body Mass Index (BMI) Calculator using React that allows users to input their height and weight, and calculates their BMI to categorize their health status (e.g., Underweight, Normal, Overweight, Obese).
@@ -64,12 +64,109 @@ Create routing structure with react-router-dom:
 <li>Add styling using CSS or Tailwind.</li>
 
 ## PROGRAM
+css
+```
+body{
+font-family:Arial;
+background:#f4f4f4;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
 
+.container{
+background:white;
+padding:30px;
+border-radius:10px;
+text-align:center;
+box-shadow:0 5px 15px rgba(0,0,0,0.2);
+width:300px;
+}
 
+input{
+width:90%;
+padding:10px;
+margin:10px;
+border:1px solid #ccc;
+border-radius:5px;
+}
 
+button{
+padding:10px 20px;
+background:#007bff;
+color:white;
+border:none;
+border-radius:5px;
+cursor:pointer;
+}
+
+button:hover{
+background:#0056b3;
+}
+```
+
+jss
+```
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+function BMIForm() {
+
+const [height, setHeight] = useState("");
+const [weight, setWeight] = useState("");
+
+const navigate = useNavigate();
+
+const handleSubmit = (e) => {
+e.preventDefault();
+
+if(height === "" || weight === ""){
+alert("Enter valid values");
+return;
+}
+
+navigate("/result", { state: { height, weight } });
+
+};
+
+return (
+
+<div className="container">
+
+<h2>Enter Your Details</h2>
+
+<form onSubmit={handleSubmit}>
+
+<input
+type="number"
+placeholder="Height (cm)"
+value={height}
+onChange={(e)=>setHeight(e.target.value)}
+/>
+
+<input
+type="number"
+placeholder="Weight (kg)"
+value={weight}
+onChange={(e)=>setWeight(e.target.value)}
+/>
+
+<button type="submit">Calculate BMI</button>
+
+</form>
+
+</div>
+
+);
+
+}
+
+export default BMIForm;
+```
 ## OUTPUT
-
-
+![BMI Result Output](Bmi.png)
+![BMI Result Output](Bmi1.png)
 
 
 ## RESULT
